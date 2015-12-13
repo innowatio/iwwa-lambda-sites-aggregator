@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/innowatio/iwwa-lambda-readings-aggregator.svg?branch=master)](https://travis-ci.org/innowatio/iwwa-lambda-readings-aggregator)
-[![Coverage Status](https://coveralls.io/repos/innowatio/iwwa-lambda-readings-aggregator/badge.svg?branch=master&service=github)](https://coveralls.io/github/innowatio/iwwa-lambda-readings-aggregator?branch=master)
-[![Dependency Status](https://david-dm.org/innowatio/iwwa-lambda-readings-aggregator.svg)](https://david-dm.org/innowatio/iwwa-lambda-readings-aggregator)
-[![devDependency Status](https://david-dm.org/innowatio/iwwa-lambda-readings-aggregator/dev-status.svg)](https://david-dm.org/innowatio/iwwa-lambda-readings-aggregator#info=devDependencies)
+[![Build Status](https://travis-ci.org/innowatio/iwwa-lambda-sites-aggregator.svg?branch=master)](https://travis-ci.org/innowatio/iwwa-lambda-sites-aggregator)
+[![Coverage Status](https://coveralls.io/repos/innowatio/iwwa-lambda-sites-aggregator/badge.svg?branch=master&service=github)](https://coveralls.io/github/innowatio/iwwa-lambda-sites-aggregator?branch=master)
+[![Dependency Status](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator.svg)](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator)
+[![devDependency Status](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator/dev-status.svg)](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator#info=devDependencies)
 
-# iwwa-lambda-readings-aggregator
+# iwwa-lambda-sites-aggregator
 
-Lambda function to aggregate readings.
+Lambda function to aggregate sites.
 
 ## Deployment
 

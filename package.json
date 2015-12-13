@@ -1,11 +1,11 @@
 {
-  "name": "iwwa-lambda-readings-aggregator",
+  "name": "iwwa-lambda-sites-aggregator",
   "version": "1.0.0",
-  "description": "Lambda readings aggregator",
+  "description": "Lambda sites aggregator",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/innowatio/iwwa-lambda-readings-aggregator.git"
+    "url": "https://github.com/innowatio/iwwa-lambda-sites-aggregator.git"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
