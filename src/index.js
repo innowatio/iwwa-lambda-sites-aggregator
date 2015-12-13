@@ -1,3 +1,4 @@
+import "babel/polyfill";
 import router from "kinesis-router";
 
 import handleUpsert from "./handle-upsert";
