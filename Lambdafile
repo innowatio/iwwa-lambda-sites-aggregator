@@ -3,6 +3,7 @@ npm install
 #Build src into bundle dir
 npm run build
 #Copy node_modules into bundle dir
+mkdir -p bundle
 cp package.json bundle/
 cd bundle
 # install prod dependencies
