@@ -25,6 +25,7 @@
     "babel-register": "^6.7.2",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
+    "codecov": "^1.0.1",
     "coveralls": "^2.11.4",
     "eslint": "^2.7.0",
     "gulp": "^3.9.0",
