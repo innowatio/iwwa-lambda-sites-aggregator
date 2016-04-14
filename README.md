@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/innowatio/iwwa-lambda-sites-aggregator.svg?branch=master)](https://travis-ci.org/innowatio/iwwa-lambda-sites-aggregator)
-[![Coverage Status](https://coveralls.io/repos/innowatio/iwwa-lambda-sites-aggregator/badge.svg?branch=master&service=github)](https://coveralls.io/github/innowatio/iwwa-lambda-sites-aggregator?branch=master)
+[![codecov.io](https://codecov.io/github/innowatio/iwwa-lambda-sites-api/coverage.svg?branch=master)](https://codecov.io/github/innowatio/iwwa-lambda-sites-api?branch=master)
 [![Dependency Status](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator.svg)](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator)
 [![devDependency Status](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator/dev-status.svg)](https://david-dm.org/innowatio/iwwa-lambda-sites-aggregator#info=devDependencies)
 
