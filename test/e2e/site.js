@@ -39,4 +39,92 @@ describe("On site insert", () => {
             });
     });
 
+    it("updates a site element", async () => {
+        sites.insert({
+            "id": "siteId",
+            "children": [
+                {
+                    "id": "sensorId1",
+                    "children": [{
+                        "id": "sensorId11",
+                        "children": [
+                            {
+                                "id": "sensorId111"
+                            },
+                            {
+                                "id": "sensorId112"
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "id": "sensorId2"
+                }
+            ],
+            "isDeleted": false
+        });
+
+        const event = getEventFromObject({
+            "data": {
+                "id": "siteId",
+                "element": {
+                    "children": [
+                        {
+                            "id": "sensorId2"
+                        }
+                    ]
+                }
+            },
+            "timestamp": 1420070400000,
+            "type": "element removed in collection sites"
+        });
+
+        await run(handler, event);
+        const updatedSite = await sites.findOne({"_id": "siteId"}, {"children": 1});
+        expect({
+            "_id": "siteId",
+            "children": [
+                {
+                    "id": "sensorId2"
+                }
+            ]
+        }).to.deep.equal(updatedSite);
+    });
+
+    it("deletes a site element", () => {
+        sites.insert({
+            "id": "siteId",
+            "children": [
+                {
+                    "id": "sensorId1",
+                    "children": [{
+                        "id": "sensorId11",
+                        "children": [
+                            {
+                                "id": "sensorId111"
+                            },
+                            {
+                                "id": "sensorId112"
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "id": "sensorId2"
+                }
+            ],
+            "isDeleted": false
+        });
+
+        const event = getEventFromObject({
+            "data": {
+                "id": "siteId"
+            },
+            "timestamp": 1420070400000,
+            "type": "element removed in collection sites"
+        });
+        return run(handler, event)
+            .then(() => sites.findOne({"_id": "siteId"}))
+            .then(updatedSite => expect(updatedSite.isDeleted).to.equal(true));
+    });
 });

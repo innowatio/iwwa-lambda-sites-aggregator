@@ -11,13 +11,16 @@ function getSensorsIds (sensor) {
     )(sensor.children || []);
 }
 
-export default async function handleUpsert (event) {
-    const site = event.data.element;
+export default async function handleUpsert (event, actionDelete) {
+    const site = {
+        ...event.data.element,
+        isDeleted: actionDelete
+    };
     const id = event.data.id;
     const sensorsIds = pipe(
         map(getSensorsIds),
         flatten
-    )(site.children);
+    )(site.children || []);
     await collection(config.SITES_COLLECTION_NAME).update(
         {_id: id},
         {...site, sensorsIds},
