@@ -2,7 +2,7 @@ export const siteInserted = {
     "id": "eventId",
     "data": {
         "element": {
-            "sensors": [
+            "children": [
                 {
                     "id": "sensorId1",
                     "children": [{

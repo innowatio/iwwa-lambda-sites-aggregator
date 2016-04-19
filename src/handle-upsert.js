@@ -17,7 +17,7 @@ export default async function handleUpsert (event) {
     const sensorsIds = pipe(
         map(getSensorsIds),
         flatten
-    )(site.sensors);
+    )(site.children);
     await collection(config.SITES_COLLECTION_NAME).update(
         {_id: id},
         {...site, sensorsIds},
