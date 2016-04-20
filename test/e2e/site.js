@@ -40,7 +40,7 @@ describe("On site", () => {
     });
 
     it("UPDATE a site element", async () => {
-        sites.insert({
+        await sites.insert({
             "id": "siteId",
             "children": [
                 {
