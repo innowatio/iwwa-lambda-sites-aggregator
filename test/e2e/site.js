@@ -41,7 +41,7 @@ describe("On site", () => {
 
     it("UPDATE a site element", async () => {
         await sites.insert({
-            "id": "siteId",
+            "_id": "siteId",
             "children": [
                 {
                     "id": "sensorId1",
