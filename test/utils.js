@@ -2,6 +2,7 @@ export function siteEvent (action) {
     return {
         id: "eventId",
         data: {
+            id: "siteId",
             element: {
                 children: [
                     {
@@ -22,8 +23,7 @@ export function siteEvent (action) {
                         id: "sensorId2"
                     }
                 ]
-            },
-            id: "siteId"
+            }
         },
         timestamp: 1420070400000,
         type: `element ${action} in collection sites`

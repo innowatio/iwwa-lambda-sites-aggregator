@@ -7,7 +7,11 @@ import {getEventFromObject, run} from "../mock";
 
 describe("On site", () => {
 
-    const sites = mongodb.collection("sites");
+    var sites;
+
+    before(async () => {
+        sites = await mongodb.collection("sites");
+    });
 
     afterEach(async () => {
         await sites.remove({});
@@ -41,7 +45,7 @@ describe("On site", () => {
         const event = getEventFromObject({
             "data": {
                 id: "siteId",
-                "element": {
+                element: {
                     children: [
                         {
                             id: "sensorId2"
@@ -49,8 +53,8 @@ describe("On site", () => {
                     ]
                 }
             },
-            "timestamp": 1420070400000,
-            "type": "element replaced in collection sites"
+            timestamp: 1420070400000,
+            type: "element replaced in collection sites"
         });
         const expected = {
             _id: "siteId",
