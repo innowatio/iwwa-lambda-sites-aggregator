@@ -1,7 +1,8 @@
 import {expect} from "chai";
 
 import {handler} from "index";
-import * as mongodb from "services/mongodb";
+import {SITES_COLLECTION_NAME} from "config";
+import {getCollection} from "services/mongodb";
 import * as utils from "../utils";
 import {getEventFromObject, run} from "../mock";
 
@@ -10,7 +11,7 @@ describe("On site", () => {
     var sites;
 
     before(async () => {
-        sites = await mongodb.collection("sites");
+        sites = await getCollection(SITES_COLLECTION_NAME);
     });
 
     afterEach(async () => {
@@ -22,7 +23,7 @@ describe("On site", () => {
         const expected = utils.siteOnDB;
 
         await run(handler, event);
-        const sensorsOnDB = await sites.findOne({"_id": "siteId"});
+        const sensorsOnDB = await sites.findOne({_id: "siteId"});
         expect(sensorsOnDB).to.deep.equal(expected);
     });
 
@@ -30,7 +31,7 @@ describe("On site", () => {
         const event = getEventFromObject(utils.siteEvent("inserted"));
 
         await run(handler, event);
-        const sensorsOnDB = await sites.findOne({"_id": "siteId"});
+        const sensorsOnDB = await sites.findOne({_id: "siteId"});
         expect(sensorsOnDB.sensorsIds.sort()).to.deep.equal([
             "sensorId1",
             "sensorId11",
@@ -68,7 +69,7 @@ describe("On site", () => {
         };
 
         await run(handler, event);
-        const updatedSite = await sites.findOne({"_id": "siteId"});
+        const updatedSite = await sites.findOne({_id: "siteId"});
         expect(expected).to.deep.equal(updatedSite);
     });
 

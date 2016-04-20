@@ -1,7 +1,7 @@
 import {concat, flatten, map, pipe} from "ramda";
 
 import {SITES_COLLECTION_NAME} from "./config";
-import {collection} from "./services/mongodb";
+import {getCollection} from "./services/mongodb";
 
 function getSensorsIds (sensor) {
     return pipe(
@@ -25,7 +25,8 @@ export default async function handleUpsert (event, actionDelete) {
         {$set: {isDeleted: true}} :
         {...site, sensorsIds, isDeleted: actionDelete};
 
-    await collection(SITES_COLLECTION_NAME).update(
+    const sitesCollection = await getCollection(SITES_COLLECTION_NAME);
+    await sitesCollection.update(
         {_id: id},
         update,
         {upsert: true}
