@@ -18,7 +18,7 @@ describe("On site", () => {
         const expected = utils.siteOnDB;
 
         await run(handler, event);
-        const sensorsOnDB = await sites.findOne({});
+        const sensorsOnDB = await sites.findOne({"_id": "siteId"});
         expect(sensorsOnDB).to.deep.equal(expected);
     });
 
@@ -26,7 +26,7 @@ describe("On site", () => {
         const event = getEventFromObject(utils.siteEvent("inserted"));
 
         await run(handler, event);
-        const sensorsOnDB = await sites.findOne({});
+        const sensorsOnDB = await sites.findOne({"_id": "siteId"});
         expect(sensorsOnDB.sensorsIds.sort()).to.deep.equal([
             "sensorId1",
             "sensorId11",
