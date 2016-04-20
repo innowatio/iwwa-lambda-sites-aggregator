@@ -1,6 +1,6 @@
 import {concat, flatten, map, pipe} from "ramda";
 
-import * as config from "./config";
+import {SITES_COLLECTION_NAME} from "./config";
 import {collection} from "./services/mongodb";
 
 function getSensorsIds (sensor) {
@@ -13,17 +13,21 @@ function getSensorsIds (sensor) {
 
 export default async function handleUpsert (event, actionDelete) {
     const site = {
-        ...event.data.element,
-        isDeleted: actionDelete
+        ...event.data.element
     };
     const id = event.data.id;
     const sensorsIds = pipe(
         map(getSensorsIds),
         flatten
     )(site.children || []);
-    await collection(config.SITES_COLLECTION_NAME).update(
+
+    const update = actionDelete ?
+        {$set: {isDeleted: true}} :
+        {...site, sensorsIds, isDeleted: actionDelete};
+
+    await collection(SITES_COLLECTION_NAME).update(
         {_id: id},
-        {...site, sensorsIds},
+        update,
         {upsert: true}
     );
     return null;

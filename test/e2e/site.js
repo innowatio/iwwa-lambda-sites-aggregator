@@ -6,18 +6,18 @@ import * as mongodb from "services/mongodb";
 import * as events from "../events";
 import {getEventFromObject, run} from "../mock";
 
-describe("On site insert", () => {
+describe("On site", () => {
 
     const sites = mongodb.collection("sites");
 
-    beforeEach(() => {
+    afterEach(() => {
         return resolve()
             .then(() => all([
                 sites.remove({})
             ]));
     });
 
-    it("creates a site element", () => {
+    it("INSERT a site element", () => {
         const event = getEventFromObject(events.siteInserted);
         return run(handler, event)
             .then(() => sites.count({}))
@@ -39,7 +39,7 @@ describe("On site insert", () => {
             });
     });
 
-    it("updates a site element", async () => {
+    it("UPDATE a site element", async () => {
         sites.insert({
             "id": "siteId",
             "children": [
@@ -76,24 +76,25 @@ describe("On site insert", () => {
                 }
             },
             "timestamp": 1420070400000,
-            "type": "element removed in collection sites"
+            "type": "element replaced in collection sites"
         });
 
         await run(handler, event);
-        const updatedSite = await sites.findOne({"_id": "siteId"}, {"children": 1});
+        const updatedSite = await sites.findOne({"_id": "siteId"}, {"children": 1, "isDeleted": 1});
         expect({
             "_id": "siteId",
             "children": [
                 {
                     "id": "sensorId2"
                 }
-            ]
+            ],
+            "isDeleted": false
         }).to.deep.equal(updatedSite);
     });
 
-    it("deletes a site element", () => {
-        sites.insert({
-            "id": "siteId",
+    it("DELETE a site element", async () => {
+        await sites.insert({
+            "_id": "siteId",
             "children": [
                 {
                     "id": "sensorId1",
@@ -123,8 +124,31 @@ describe("On site insert", () => {
             "timestamp": 1420070400000,
             "type": "element removed in collection sites"
         });
-        return run(handler, event)
-            .then(() => sites.findOne({"_id": "siteId"}))
-            .then(updatedSite => expect(updatedSite.isDeleted).to.equal(true));
+
+        await run(handler, event);
+        const updatedSite = await sites.findOne({"_id": "siteId"});
+        expect(updatedSite).to.deep.equal({
+            "_id": "siteId",
+            "children": [
+                {
+                    "id": "sensorId1",
+                    "children": [{
+                        "id": "sensorId11",
+                        "children": [
+                            {
+                                "id": "sensorId111"
+                            },
+                            {
+                                "id": "sensorId112"
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "id": "sensorId2"
+                }
+            ],
+            "isDeleted": true
+        });
     });
 });
