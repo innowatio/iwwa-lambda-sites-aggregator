@@ -19,7 +19,7 @@ export default async function handleUpsert (event, actionDelete) {
     const sensorsIds = pipe(
         map(getSensorsIds),
         flatten
-    )(site.children || []);
+    )(site.sensors || []);
 
     const update = actionDelete ?
         {$set: {isDeleted: true}} :

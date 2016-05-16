@@ -4,7 +4,7 @@ export function siteEvent (action) {
         data: {
             id: "siteId",
             element: {
-                children: [
+                sensors: [
                     {
                         id: "sensorId1",
                         children: [{
@@ -32,7 +32,7 @@ export function siteEvent (action) {
 
 export const siteOnDB = {
     _id: "siteId",
-    children: [
+    sensors: [
         {
             id: "sensorId1",
             children: [{

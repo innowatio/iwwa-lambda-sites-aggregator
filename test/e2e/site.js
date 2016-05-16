@@ -47,7 +47,7 @@ describe("On site", () => {
             "data": {
                 id: "siteId",
                 element: {
-                    children: [
+                    sensors: [
                         {
                             id: "sensorId2"
                         }
@@ -59,7 +59,7 @@ describe("On site", () => {
         });
         const expected = {
             _id: "siteId",
-            children: [
+            sensors: [
                 {
                     id: "sensorId2"
                 }
