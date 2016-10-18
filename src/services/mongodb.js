@@ -2,9 +2,16 @@ import {MongoClient} from "mongodb";
 
 import {MONGODB_URL} from "../config";
 
-const connection = MongoClient.connect(MONGODB_URL);
+var mongoClientInstance;
+
+export async function getMongoClient () {
+    if (!mongoClientInstance) {
+        mongoClientInstance = await MongoClient.connect(MONGODB_URL);
+    }
+    return mongoClientInstance;
+}
 
 export async function getCollection (collectionName) {
-    const db = await connection;
+    const db = await getMongoClient();
     return db.collection(collectionName);
 }
