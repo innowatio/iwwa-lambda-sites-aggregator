@@ -28,7 +28,7 @@ export default async function handleUpsert (event, actionDelete) {
     const sitesCollection = await getCollection(SITES_COLLECTION_NAME);
     await sitesCollection.update(
         {_id: id},
-        update,
+        {$set: update},
         {upsert: true}
     );
     return null;
