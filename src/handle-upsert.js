@@ -22,7 +22,7 @@ export default async function handleUpsert (event, actionDelete) {
     )(site.sensors || []);
 
     const update = actionDelete ?
-        {$set: {isDeleted: true}} :
+        {...site, isDeleted: true} :
         {...site, sensorsIds, isDeleted: actionDelete, _id: id};
 
     const sitesCollection = await getCollection(SITES_COLLECTION_NAME);
